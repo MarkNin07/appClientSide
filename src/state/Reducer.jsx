@@ -17,8 +17,8 @@ function reducer(state, action){
             return state
 
         case 'update-chores':
-            return state
-
-        
+            return state        
     }
 }
+
+export default reducer
