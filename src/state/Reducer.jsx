@@ -1,20 +1,21 @@
 
 function reducer(state, action){
-    switch(action.type){
+    const {type, payload} = action
+    switch(type){
         case 'add-category':
-            return state
+            return [...state, payload]
 
         case 'remove-category':
-            return state
+            return state.filter((category) => category.id !== payload)
 
         case 'get-categories':
-            return state
+            return payload
         
         case 'add-chores':
-            return state
+            return payload
 
         case 'remove-chores':
-            return state
+            return 
 
         case 'update-chores':
             return state        
