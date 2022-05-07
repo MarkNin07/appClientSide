@@ -1,32 +1,23 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
+import {getCategory} from '../services/CategoriesServ'
 import reducer from './Reducer'
-//Here's the initial state of our app. It's an object
-const initialState = [
-    {
-        
-        categoryId: '',
-        categoryName: '',
-        listOfChores: [
-            {
-                id: '',
-                title: '',
-                categoryId: '',
-                done: ''
-            }
-        ]
-        
-    }
-]
 
-const Store = createContext(initialState);
+const Store = createContext({});
 
 const StoreProvider = ( { children } ) => {
-    const [state, dispatch] = useReducer(reducer, initialState)
-/*
-    useEffect(() => {
+    const [state, dispatch] = useReducer(reducer, [])
 
+    const loadCategory = async () => {
+        const data = await getCategory()
+        console.log(data);
+        dispatch({type: "get-category", payload: data })
+    }
+
+
+    useEffect(() => {
+        loadCategory()
     }, [])
-*/
+
     return(
         <Store.Provider value={{state, dispatch}}>
             {children}
@@ -36,4 +27,4 @@ const StoreProvider = ( { children } ) => {
 
 export default StoreProvider
 
-export {Store, initialState}
+export {Store}

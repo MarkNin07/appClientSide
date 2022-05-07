@@ -1,24 +1,34 @@
 
 function reducer(state, action){
-    const {type, payload} = action
-    switch(type){
+    switch(action.type){
         case 'add-category':
-            return [...state, payload]
+            return [...state, action.payload]
 
         case 'remove-category':
-            return state.filter((category) => category.id !== payload)
+            return state.filter((category) => category.id !== action.payload.category.id)
 
-        case 'get-categories':
-            return payload
+        case 'get-category':
+            return action.payload
         
         case 'add-chores':
-            return payload
+            return action.payload
 
         case 'remove-chores':
+            const parentCategory = state.find((category) => category.id === action.payload.id)
+            if (parentCategory) {
+                const filteredList = parentCategory.choresList.filter((task) => task.id !== action.payload.id)
+                const newState = state.map((category) =>
+                    category.id === parentCategory.id ? { ...parentCategory, choresList: filteredList } : category
+                )
+                return newState
+            }
             return 
 
         case 'update-chores':
-            return state        
+            return action.payload
+        
+        default:
+            throw Error("Your request was denied")
     }
 }
 
