@@ -22,11 +22,11 @@ const Store = createContext(initialState);
 
 const StoreProvider = ( { children } ) => {
     const [state, dispatch] = useReducer(reducer, initialState)
-
+/*
     useEffect(() => {
 
     }, [])
-
+*/
     return(
         <Store.Provider value={{state, dispatch}}>
             {children}

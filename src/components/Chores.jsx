@@ -20,7 +20,7 @@ const Chores = ({ chore }) => {
   return (
     <div style={{ border: 'solid black 1px' }}>
       <h3>{chore.title}</h3>
-      <input type='checkbox' value={chore.done} onClick={() => updateSinglechore(chore)} />
+      <input type='checkbox' checked={chore.done} onClick={() => updateSinglechore(chore)} />
       <button onClick={() => deleteSingleChores(chore)}>delete</button>
       <button>update</button>
     </div>

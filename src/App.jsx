@@ -2,14 +2,17 @@ import { useState } from 'react'
 import './App.css'
 import StoreProvider from './state/StoreProvider'
 import CategoryList from './components/CategoryList'
+import CategoryForm from './components/CategoryForm'
 function App() {
 
   return (
-
-    <StoreProvider>
-      <h1>Please, don't make me cry</h1> 
-      <CategoryList />     
+    <div>
+      <StoreProvider>
+        <CategoryForm />
+        <CategoryList />     
     </StoreProvider>
+    </div>
+
   
   )
 }
