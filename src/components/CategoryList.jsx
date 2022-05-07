@@ -1,7 +1,7 @@
 
 import React, { useContext } from 'react'
 import {Store} from '../state/StoreProvider'
-//import Category from './Category'
+import Category from './Category'
 
 
 const CategoryList = () => {
@@ -9,8 +9,6 @@ const CategoryList = () => {
     const {state, dispatch} = useContext(Store) 
 
     console.log(state);
-
-    /*
 
     return (
         <>
@@ -20,7 +18,7 @@ const CategoryList = () => {
         </> 
     )
 
-    */
+
 }
 
 export default CategoryList
