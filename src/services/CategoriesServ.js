@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost:8081/api/get/categories'
+const ENDPOINT = 'http://localhost:8081/api'
 
 
 const HEADERS = {
@@ -7,18 +7,18 @@ const HEADERS = {
   }
 
 export const getCategory = async () => {
-  const response = await fetch(ENDPOINT)
+  const response = await fetch(`${ENDPOINT}/get/categories`)
   const data = await response.json()
   return data
 }
 
 export const saveCategory = async (category) => {
-    const response = await fetch(ENDPOINT, {method: "POST", body: JSON.stringify(category), headers: HEADERS})
+    const response = await fetch(`${ENDPOINT}/create/category`, {method: "POST", body: JSON.stringify(category), headers: HEADERS})
     const data = await response.json()
     return data
   }
 
   export const deleteCategory = async (category) => {
-    const response = await fetch(`${ENDPOINT}/${category.id}`, {method: "DELETE", headers: HEADERS})
-    return response
+    const response = await fetch(`${ENDPOINT}/delete/category/${category.id}`, {method: "DELETE"})
+    return response;
   }

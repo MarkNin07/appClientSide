@@ -3,7 +3,7 @@ import {saveCategory} from '../services/CategoriesServ'
 import {Store} from '../state/StoreProvider'
 
 const CategoryForm = () => {
-    const {dispath} = useContext(Store)
+    const {state, dispatch} = useContext(Store)
     const [title, setTitle] = useState("")
     const onSubmit = async(event) => {
         event.preventDefault()

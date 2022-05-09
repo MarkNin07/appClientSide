@@ -2,19 +2,31 @@
 function reducer(state, action){
     switch(action.type){
         case 'add-category':
+            //done
             return [...state, action.payload]
 
         case 'remove-category':
-            return state.filter((category) => category.id !== action.payload.category.id)
+            //done
+            return state.filter((category) => category.id !== action.payload.id)
 
         case 'get-category':
+            //done
             return action.payload
         
         case 'add-chores':
-            return action.payload
+            //done
+            const newState = state.map((category) => {
+                if(category.id === action.payload.id) {
+                    return action.payload
+                }
+                return category
+            })
+
+            return newState
 
         case 'remove-chores':
-            const parentCategory = state.find((category) => category.id === action.payload.id)
+            // done
+            const parentCategory = state.find((category) => category.id === action.payload.fkCategoryId)
             if (parentCategory) {
                 const filteredList = parentCategory.choresList.filter((task) => task.id !== action.payload.id)
                 const newState = state.map((category) =>
@@ -22,7 +34,7 @@ function reducer(state, action){
                 )
                 return newState
             }
-            return 
+            return state
 
         case 'update-chores':
             return action.payload

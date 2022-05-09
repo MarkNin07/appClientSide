@@ -4,13 +4,16 @@ import {Store} from '../state/StoreProvider'
 
 
 const ChoresForm = ({ categoryParent }) => {
-    const {dispatch} = useContext(Store);
+    const {state, dispatch} = useContext(Store);
     const [userInput, setUserInput] = useState('')
+   
     const onSubmitChores = async (e) => {
         e.preventDefault()
-        const postChores = { title: userInput, categoryId: categoryParent.id, done: false}
+
+        const postChores = { title: userInput, fkCategoryId: categoryParent.id, done: false}
         
-        const newState = await saveToDo(postTodo)
+        const newState = await saveToDo(postChores)
+
         if(newState){
             dispatch({type:'add-chores', payload: newState})
             setUserInput("")
