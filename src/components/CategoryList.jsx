@@ -7,6 +7,7 @@ import Category from './Category'
 const CategoryList = () => {
     
     const {state, dispatch} = useContext(Store) 
+    // console.log(state);
 
     return (
         <>

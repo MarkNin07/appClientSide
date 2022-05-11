@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { deleteToDo, updateToDo } from '../services/ChoresServ'
 import { Store } from '../state/StoreProvider'
 
-const Chores = ({ chore }) => {
+const Chores = ({ chore, setUpdateBtn }) => {
   const {state, dispatch } = useContext(Store)
 
   const deleteSingleChores = async (chore) => {
@@ -10,6 +10,10 @@ const Chores = ({ chore }) => {
     if(response.status === 200){
       dispatch({ type: 'remove-chores', payload: chore })
     }
+  }
+
+  const updateChores = (chore) =>{
+    setUpdateBtn(chore)
   }
 
   const updateCheck = async (chore) => {
@@ -26,7 +30,7 @@ const Chores = ({ chore }) => {
       <h3>{chore.title}</h3>
       <input type='checkbox' checked={chore.done} onChange={() => updateCheck(chore)} />
       <button onClick={() => deleteSingleChores(chore)}>Delete</button>
-      <button>Update</button>
+      <button onClick={() => updateChores(chore)}>Update</button>
     </div>
   )
 }

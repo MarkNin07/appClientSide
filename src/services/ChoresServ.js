@@ -12,7 +12,7 @@ export const saveToDo = async (todo) => {
 }
 
 export const updateToDo = async (todo) => {
-  const response = await fetch(ENDPOINT, { method: 'PUT', body: JSON.stringify(todo), headers: HEADERS })
+  const response = await fetch(`${ENDPOINT}/update/chores`, { method: 'PUT', body: JSON.stringify(todo), headers: HEADERS })
   const data = await response.json()
   return data
 }

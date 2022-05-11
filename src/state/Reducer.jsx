@@ -35,9 +35,12 @@ function reducer(state, action){
                 return newState
             }
             return state
+            
 
         case 'update-chores':
-            return action.payload
+            const categoryUpdated = action.payload 
+            console.log(action.payload);
+            return state.map((category)=>category.id === categoryUpdated.id ? categoryUpdated : category)
         
         default:
             throw Error("Your request was denied")
